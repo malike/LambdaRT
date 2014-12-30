@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: st.malike.elasticsearch.service.SummaryElasticSearchServiceTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 11, Time elapsed: 0.003 sec - in st.malike.elasticsearch.service.SummaryElasticSearchServiceTest

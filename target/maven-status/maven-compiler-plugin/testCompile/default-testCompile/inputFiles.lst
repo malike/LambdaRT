@@ -1,0 +1,9 @@
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/service/storm/kafka/EventLoggerTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/service/kafka/KafkaConsumerServiceTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/service/mongo/SummaryCalculatorServiceTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/elasticsearch/service/DemographicElasticSearchServiceTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/elasticsearch/service/SummaryElasticSearchServiceTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/service/kafka/KafkaProduceServiceTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/service/mongo/DemographicServiceTest.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/util/RandomString.java
+/home/dreamadmin/NetBeansProjects/LambdaLN/src/test/java/st/malike/service/mongo/DemographicSummaryServiceTest.java

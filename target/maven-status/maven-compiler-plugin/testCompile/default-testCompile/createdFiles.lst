@@ -1,0 +1,9 @@
+st/malike/service/storm/kafka/EventLoggerTest.class
+st/malike/service/kafka/KafkaConsumerServiceTest.class
+st/malike/elasticsearch/service/SummaryElasticSearchServiceTest.class
+st/malike/service/mongo/SummaryCalculatorServiceTest.class
+st/malike/service/mongo/DemographicSummaryServiceTest.class
+st/malike/util/RandomString.class
+st/malike/service/kafka/KafkaProduceServiceTest.class
+st/malike/elasticsearch/service/DemographicElasticSearchServiceTest.class
+st/malike/service/mongo/DemographicServiceTest.class

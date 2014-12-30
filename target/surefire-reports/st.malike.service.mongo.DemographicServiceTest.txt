@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: st.malike.service.mongo.DemographicServiceTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 1, Errors: 0, Skipped: 8, Time elapsed: 62.574 sec <<< FAILURE! - in st.malike.service.mongo.DemographicServiceTest
+testMongoRiverForElasticSearch(st.malike.service.mongo.DemographicServiceTest)  Time elapsed: 61.027 sec  <<< FAILURE!
+java.lang.AssertionError: Values should be different. Actual: 0
+	at st.malike.service.mongo.DemographicServiceTest.testMongoRiverForElasticSearch(DemographicServiceTest.java:134)
+
