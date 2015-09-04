@@ -3,5 +3,4 @@ LambdaRT
 
 Lambda Architecture
 
-Buidling a <a href="http://en.wikipedia.org/wiki/Lambda_architecture">lambda architectured </a> system 
-with Storm,MongoDb,ElasticSearch and Kafka
+Buidling a <a href="http://malike.github.io/Lambda-Architecture-RT/">lambda architecture </a> monitoring system.
