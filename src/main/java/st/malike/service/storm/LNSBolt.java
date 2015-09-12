@@ -102,7 +102,7 @@ public class LNSBolt extends BaseBasicBolt {
                         //save batch of events
                         demographicService.saveDemographic(eventEntry.getValue());
 
-                        batchSummary = aggregatorService.getSummaryByDay(demographicSummary, eventEntry.getKey(), dateToSummarize);
+                        //batchSummary = aggregatorService.getSummaryByDay(demographicSummary, eventEntry.getKey(), dateToSummarize);
                         //summarise current batch of events                   
 
                         //save new summary if exist
