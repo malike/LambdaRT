@@ -106,7 +106,7 @@ public class LNSBolt extends BaseBasicBolt {
                         //summarise current batch of events                   
 
                         //save new summary if exist
-                        demographicSummaryService.saveDemographicSummary(batchSummary);
+                        //demographicSummaryService.saveDemographicSummary(batchSummary);
 
                         //send to lns service                     
 //                    liveNotificationService.send(batchSummary, lnsArguments, lnsMessage);
