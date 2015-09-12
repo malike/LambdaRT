@@ -97,7 +97,7 @@ public class LNSBolt extends BaseBasicBolt {
                     for (Map.Entry<String, List<Demographic>> eventEntry : events.entrySet()) {
 //              
                         //check if summary already exist in elastic search
-                        DemographicSummary demographicSummary = summaryElasticSearchService.findByEventAndDate(indexName, summaryTypeName, eventEntry.getKey(), dateToSummarize);
+                       // DemographicSummary demographicSummary = summaryElasticSearchService.findByEventAndDate(indexName, summaryTypeName, eventEntry.getKey(), dateToSummarize);
 
                         //save batch of events
                         demographicService.saveDemographic(eventEntry.getValue());
