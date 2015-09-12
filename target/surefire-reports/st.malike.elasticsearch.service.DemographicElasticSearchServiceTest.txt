@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: st.malike.elasticsearch.service.DemographicElasticSearchServiceTest
--------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 9, Time elapsed: 12.407 sec - in st.malike.elasticsearch.service.DemographicElasticSearchServiceTest
