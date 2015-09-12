@@ -10,7 +10,6 @@ import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
-import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.log4j.Logger;

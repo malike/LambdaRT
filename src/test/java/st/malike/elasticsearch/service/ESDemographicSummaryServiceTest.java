@@ -4,6 +4,7 @@
  */
 package st.malike.elasticsearch.service;
 
+import st.malike.service.ESDemographicSummaryService;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
-import st.malike.model.DemographicSummary;
+import st.malike.model.mongodb.DemographicSummary;
 import st.malike.util.HourTimeCount;
 import st.malike.util.MinTimeCount;
 import uk.co.jemos.podam.annotations.PodamCollection;
@@ -27,9 +28,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author malike_st
  */
 //@Ignore - 
-public class SummaryElasticSearchServiceTest {
+public class ESDemographicSummaryServiceTest {
 
-    static SummaryElasticSearchService summaryBufferService;
+    static ESDemographicSummaryService summaryBufferService;
     static PodamFactory podamFactory;
     @SuppressWarnings("unchecked")
     @PodamCollection(nbrElements = 6)
@@ -44,7 +45,7 @@ public class SummaryElasticSearchServiceTest {
     @BeforeClass
     public static void setupClass() {
         podamFactory = new PodamFactoryImpl();
-        summaryBufferService = new SummaryElasticSearchService();
+        summaryBufferService = new ESDemographicSummaryService();
     }
  
     @Test

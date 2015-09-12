@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package st.malike.service.mongo;
+package st.malike.service;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -22,7 +22,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import st.malike.model.DemographicSummary;
+import st.malike.model.mongodb.DemographicSummary;
 import st.malike.util.HourTimeCount;
 import st.malike.util.MinTimeCount;
 
@@ -31,7 +31,7 @@ import st.malike.util.MinTimeCount;
  * @author malike_st
  */
 @Service
-public class SummaryCalculatorService implements Serializable {
+public class AggregatorService implements Serializable {
 
     @Autowired
     private MongoTemplate mongoTemplate;

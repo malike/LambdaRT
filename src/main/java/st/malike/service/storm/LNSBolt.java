@@ -26,13 +26,11 @@ import java.util.logging.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.stereotype.Component;
-import st.malike.elasticsearch.service.SummaryElasticSearchService;
-import st.malike.model.Demographic;
-import st.malike.model.DemographicSummary;
-import st.malike.service.lns.LiveNotificationService;
-import st.malike.service.mongo.DemographicService;
-import st.malike.service.mongo.DemographicSummaryService;
-import st.malike.service.mongo.SummaryCalculatorService;
+import st.malike.model.mongodb.Demographic;
+import st.malike.model.mongodb.DemographicSummary;
+import st.malike.service.DemographicService;
+import st.malike.service.DemographicSummaryService;
+import st.malike.service.AggregatorService;
 import st.malike.util.RealTimeData;
 import storm.starter.util.TupleHelpers;
 
@@ -48,9 +46,8 @@ public class LNSBolt extends BaseBasicBolt {
     RealTimeData rtData = new RealTimeData();
     private DemographicSummaryService demographicSummaryService;
     private DemographicService demographicService;
-    private SummaryElasticSearchService summaryElasticSearchService;
-    private LiveNotificationService liveNotificationService;
-    private SummaryCalculatorService summaryCalculatorService;
+    private DemographicSummaryService summaryElasticSearchService;
+    private AggregatorService aggregatorService;
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
@@ -105,7 +102,7 @@ public class LNSBolt extends BaseBasicBolt {
                         //save batch of events
                         demographicService.saveDemographic(eventEntry.getValue());
 
-                        batchSummary = summaryCalculatorService.getSummaryByDay(demographicSummary, eventEntry.getKey(), dateToSummarize);
+                        batchSummary = aggregatorService.getSummaryByDay(demographicSummary, eventEntry.getKey(), dateToSummarize);
                         //summarise current batch of events                   
 
                         //save new summary if exist
@@ -145,9 +142,8 @@ public class LNSBolt extends BaseBasicBolt {
             ctx.refresh();
             demographicSummaryService = ctx.getBean(DemographicSummaryService.class);
             demographicService = ctx.getBean(DemographicService.class);
-            summaryElasticSearchService = ctx.getBean(SummaryElasticSearchService.class);
-            liveNotificationService = ctx.getBean(LiveNotificationService.class);
-            summaryCalculatorService = ctx.getBean(SummaryCalculatorService.class);
+            summaryElasticSearchService = ctx.getBean(DemographicSummaryService.class);           
+            aggregatorService = ctx.getBean(AggregatorService.class);
         } catch (IOException ex) {
             Logger.getLogger(LNSBolt.class.getName()).log(Level.SEVERE, null, ex);
         }

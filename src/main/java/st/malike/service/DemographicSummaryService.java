@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package st.malike.service.mongo;
+package st.malike.service;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -19,8 +19,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import st.malike.model.DemographicSummary;
-import st.malike.repository.DemographicSummaryRepository;
+import st.malike.model.mongodb.DemographicSummary;
+import st.malike.repository.mongodb.DemographicSummaryRepository;
 
 /**
  *

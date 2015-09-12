@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import st.malike.service.kafka.KafkaProduceService;
 import st.malike.service.storm.kafka.LambdaLNSTopology;
@@ -26,8 +27,9 @@ import st.malike.service.storm.kafka.LambdaLNSTopology;
  */
 @Configuration
 @EnableAutoConfiguration
-@EnableMongoRepositories(basePackages = "st.malike.repository")
-@ComponentScan(basePackages = "st.malike")
+@EnableMongoRepositories(basePackages = "st.malike.repository.mongodb")
+@EnableElasticsearchRepositories(basePackages = "st.malike.repository.elasticsearch")
+@ComponentScan
 public class App {
 
     //lets do the redundant process of reading a file and logging events to kafka

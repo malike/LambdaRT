@@ -2,28 +2,26 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package st.malike.model;
+package st.malike.model.elasticsearch;
 
 import java.util.Date;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 
 /**
  *
  * @author malike_st
  */
-@Document(collection = "demographic")
-public class Demographic {
+@Document(indexName = "lambda_rt", type = "demographic")
+public class ESDemographic {
 
     @Id
-    private String id;
-    @Indexed
-    private String event;
-    @Indexed
+    private String id;   
+    private String event;   
     private Date dateCreated;
 
-    public Demographic() {
+    public ESDemographic() {
     }
 
     public String getId() {
@@ -49,4 +47,5 @@ public class Demographic {
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
+
 }

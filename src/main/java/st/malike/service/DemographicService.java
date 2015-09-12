@@ -2,19 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package st.malike.service.mongo;
+package st.malike.service;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import st.malike.model.Demographic;
-import st.malike.repository.DemographicRepository;
+import st.malike.model.mongodb.Demographic;
+import st.malike.repository.mongodb.DemographicRepository;
 
 /**
  *

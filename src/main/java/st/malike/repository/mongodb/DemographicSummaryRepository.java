@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package st.malike.repository;
+package st.malike.repository.mongodb;
 
 import java.io.Serializable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import st.malike.model.DemographicSummary;
+import st.malike.model.mongodb.DemographicSummary;
 
 /**
  *

@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
@@ -43,7 +42,7 @@ public class KafkaConsumerService {
     }
 
     private void start(String topic) {
-        HashMap<String, String> consugmerConfigMap = new HashMap<String, String>();
+        HashMap<String, String> consugmerConfigMap = new HashMap<>();
         consugmerConfigMap.put("zookeeper.connect", zkConnect);
         consugmerConfigMap.put("group.id", groupId);
         consugmerConfigMap.put("zookeeper.session.timeout.ms", zkTimeOut);
@@ -56,8 +55,8 @@ public class KafkaConsumerService {
         consumerConnector = Consumer.createJavaConsumerConnector(consumerConfig);
         ConsumerConfig cf = new ConsumerConfig(props);
         ConsumerConnector consumer = Consumer.createJavaConsumerConnector(cf);
-        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-        topicCountMap.put(topic, new Integer(1));
+        Map<String, Integer> topicCountMap = new HashMap<>();
+        topicCountMap.put(topic, 1);
         Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
         streams = consumerMap.get(topic);
     }

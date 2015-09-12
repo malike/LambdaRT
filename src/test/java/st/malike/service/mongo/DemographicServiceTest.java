@@ -4,6 +4,7 @@
  */
 package st.malike.service.mongo;
 
+import st.malike.service.DemographicService;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import st.malike.elasticsearch.service.DemographicElasticSearchService;
-import st.malike.model.Demographic;
+import st.malike.service.ESDemographicService;
+import st.malike.model.mongodb.ESDemographic;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -32,7 +33,7 @@ public class DemographicServiceTest {
     @Autowired
     @Qualifier(value = "demographicService")
     DemographicService demographicService;
-    static DemographicElasticSearchService demographicBufferService;
+    static ESDemographicService demographicBufferService;
     static PodamFactory podamFactory;
     static final String DATEFORMAT = "MMM dd, yyyy HH:mm:ss";
     static String SHARDINDEX = "lambda_lns_test";
@@ -41,14 +42,14 @@ public class DemographicServiceTest {
     @BeforeClass
     public static void setUp() {
         podamFactory = new PodamFactoryImpl();
-        demographicBufferService = new DemographicElasticSearchService();
+        demographicBufferService = new ESDemographicService();
     }
 
     @Test
     @Ignore
     public void saveDemographic() {
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
-        Demographic dSaved = demographicService.saveDemographic(d);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
+        ESDemographic dSaved = demographicService.saveDemographic(d);
         assertEquals(d.getEvent(), dSaved.getEvent());
         assertEquals(d.getId(), dSaved.getId());
     }
@@ -56,8 +57,8 @@ public class DemographicServiceTest {
     @Test
     @Ignore
     public void saveDemographicList() {
-        List<Demographic> d = Arrays.asList(podamFactory.manufacturePojo(Demographic[].class));
-        List<Demographic> dSaved = demographicService.saveDemographic(d);
+        List<ESDemographic> d = Arrays.asList(podamFactory.manufacturePojo(ESDemographic[].class));
+        List<ESDemographic> dSaved = demographicService.saveDemographic(d);
         assertEquals(d.size(), dSaved.size());
         assertEquals(d.get(0).getId(), dSaved.get(0).getId());
     }
@@ -65,9 +66,9 @@ public class DemographicServiceTest {
     @Test
     @Ignore
     public void getDemographicById() {
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
         demographicService.saveDemographic(d);
-        Demographic de = demographicService.getDemographicById(d.getId());
+        ESDemographic de = demographicService.getDemographicById(d.getId());
         assertEquals(d.getEvent(), de.getEvent());
     }
 
@@ -80,8 +81,8 @@ public class DemographicServiceTest {
     @Test
     @Ignore
     public void deleteDemographic() {
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
-        Demographic dSaved = demographicService.saveDemographic(d);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
+        ESDemographic dSaved = demographicService.saveDemographic(d);
 
         assertEquals(d.getEvent(), dSaved.getEvent());
         assertEquals(d.getId(), dSaved.getId());
@@ -94,9 +95,9 @@ public class DemographicServiceTest {
     @Test
     @Ignore
     public void getDemographicByEvent() {
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
         demographicService.saveDemographic(d);
-        List<Demographic> de = demographicService.getDemographicByEvent(d.getEvent());
+        List<ESDemographic> de = demographicService.getDemographicByEvent(d.getEvent());
         assertEquals(d.getEvent(), de.get(0).getEvent());
 
     }
@@ -105,18 +106,18 @@ public class DemographicServiceTest {
     @Ignore
     public void getDemographicByDate() {
 
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
         demographicService.saveDemographic(d);
-        List<Demographic> de = demographicService.getDemographicByDate(d.getDateCreated());
+        List<ESDemographic> de = demographicService.getDemographicByDate(d.getDateCreated());
         assertEquals(d.getDateCreated(), de.get(0).getDateCreated());
     }
 
     @Test
     @Ignore
     public void getDemographicByEventAndDate() {
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
         demographicService.saveDemographic(d);
-        Demographic de = demographicService.getDemographicByEventAndDate(d.getEvent(), d.getDateCreated());
+        ESDemographic de = demographicService.getDemographicByEventAndDate(d.getEvent(), d.getDateCreated());
         assertEquals(d.getEvent(), de.getEvent());
         assertEquals(d.getDateCreated(), de.getDateCreated());
     }
@@ -124,12 +125,12 @@ public class DemographicServiceTest {
     @Test
     public void testMongoRiverForElasticSearch() throws ParseException {
         //save to mongodb
-        Demographic d = podamFactory.manufacturePojo(Demographic.class);
+        ESDemographic d = podamFactory.manufacturePojo(ESDemographic.class);
         demographicService.saveDemographic(d);
         //retrieve from elastic search
-        List<Demographic> des = demographicBufferService.getRecords(SHARDINDEX, TYPENAME, 0, 20);
+        List<ESDemographic> des = demographicBufferService.getRecords(SHARDINDEX, TYPENAME, 0, 20);
 
-        List<Demographic> de = demographicBufferService.findByEventAndDate(SHARDINDEX, TYPENAME, d.getEvent(), d.getDateCreated());
+        List<ESDemographic> de = demographicBufferService.findByEventAndDate(SHARDINDEX, TYPENAME, d.getEvent(), d.getDateCreated());
 
         assertNotEquals(0, de.size());
         assertEquals(d.getId(), de.get(0).getId());

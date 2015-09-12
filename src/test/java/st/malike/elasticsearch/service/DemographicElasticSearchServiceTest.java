@@ -4,6 +4,7 @@
  */
 package st.malike.elasticsearch.service;
 
+import st.malike.service.ESDemographicService;
 import com.google.gson.Gson;
 import java.text.ParseException;
 import java.util.Date;
@@ -14,7 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
-import st.malike.model.Demographic;
+import st.malike.model.elasticsearch.ESDemographic;
 
 /**
  *
@@ -23,19 +24,19 @@ import st.malike.model.Demographic;
 //@Ignore  -- for this lets actually save
 public class DemographicElasticSearchServiceTest {
 
-    static DemographicElasticSearchService demographicBufferService;
+    static ESDemographicService demographicBufferService;
     static String SHARDINDEX = "lambda_lns_test";
     static String TYPENAME = "demographic";
 
     @BeforeClass
     public static void setupClass() {
-        demographicBufferService = new DemographicElasticSearchService();
+        demographicBufferService = new ESDemographicService();
     }
 
     @Test
 //    @Ignore
     public void saveRecord() {
-        Demographic d = new Demographic();
+        ESDemographic d = new ESDemographic();
         d.setDateCreated(new Date());
         d.setId("1");
         d.setEvent("test");
@@ -46,11 +47,11 @@ public class DemographicElasticSearchServiceTest {
     @Test
     @Ignore
     public void updateRecord() throws DocumentMissingException {
-        Demographic d = new Demographic();
+        ESDemographic d = new ESDemographic();
         d.setId("1");
         d.setEvent("updated");
         demographicBufferService.updateRecord(SHARDINDEX, TYPENAME, d);
-        Demographic dat = (Demographic) demographicBufferService.getRecord(SHARDINDEX, TYPENAME, d.getId());
+        ESDemographic dat = (ESDemographic) demographicBufferService.getRecord(SHARDINDEX, TYPENAME, d.getId());
         System.out.println("Updated => " + new Gson().toJson(dat));
         assertNotEquals(null, dat);
         assertEquals("updated", dat.getEvent());
@@ -59,7 +60,7 @@ public class DemographicElasticSearchServiceTest {
     @Test(expected = DocumentMissingException.class)
     @Ignore
     public void updateRecordNotFoundExeption() throws DocumentMissingException {
-        Demographic d = new Demographic();
+        ESDemographic d = new ESDemographic();
         d.setDateCreated(new Date());
         d.setId(UUID.randomUUID().toString());
         d.setEvent("test");
@@ -78,14 +79,14 @@ public class DemographicElasticSearchServiceTest {
     @Ignore
     public void deleteRecord() throws ParseException, DocumentMissingException, Exception {
         String id = UUID.randomUUID().toString();
-        Demographic d = new Demographic();
+        ESDemographic d = new ESDemographic();
         d.setDateCreated(new Date());
         d.setId(id);
         d.setEvent("testdata");
         Object dat = demographicBufferService.saveRecord(SHARDINDEX, TYPENAME, d);
         assertNotEquals(null, dat);
 
-        Demographic getdat = (Demographic) demographicBufferService.getRecord(SHARDINDEX, TYPENAME, id);
+        ESDemographic getdat = (ESDemographic) demographicBufferService.getRecord(SHARDINDEX, TYPENAME, id);
         assertNotEquals(null, getdat);
 
         demographicBufferService.deleteRecord(SHARDINDEX, TYPENAME, getdat.getId());
@@ -115,7 +116,7 @@ public class DemographicElasticSearchServiceTest {
     @Test
     @Ignore
     public void getRecords() throws ParseException {
-        List<Demographic> data = demographicBufferService.getRecords(SHARDINDEX, TYPENAME, null, null);
+        List<ESDemographic> data = demographicBufferService.getRecords(SHARDINDEX, TYPENAME, null, null);
         assertNotNull(data);
         assertTrue(data.size() > 0);
         System.out.println(new Gson().toJson(data));
@@ -125,7 +126,7 @@ public class DemographicElasticSearchServiceTest {
     @Ignore
     public void searchTextRecord() {
         String searchParam = "te";
-        List<Demographic> data = demographicBufferService.searchTextRecord(SHARDINDEX, TYPENAME, searchParam, 0, 3);
+        List<ESDemographic> data = demographicBufferService.searchTextRecord(SHARDINDEX, TYPENAME, searchParam, 0, 3);
         assertNotNull(data);
         assertTrue(data.size() > 0);
         assertTrue(data.get(0).getEvent().startsWith(searchParam));

@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-import st.malike.model.Demographic;
+import st.malike.model.elasticsearch.ESDemographic;
 import storm.starter.util.TupleHelpers;
 
 /**
@@ -54,7 +54,7 @@ public class EventNormalizerBolt extends BaseBasicBolt {
                     Date dt = new SimpleDateFormat(config.get("defaultDateFormat").toString(), Locale.getDefault()).parse(date);
 
                     //create a model of event
-                    Demographic ed = new Demographic();
+                    ESDemographic ed = new ESDemographic();
                     ed.setId(UUID.randomUUID().toString());
                     ed.setEvent(event);
                     ed.setDateCreated(new Date());

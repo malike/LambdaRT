@@ -4,6 +4,7 @@
  */
 package st.malike.service.mongo;
 
+import st.malike.service.AggregatorService;
 import com.google.gson.Gson;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import st.malike.model.DemographicSummary;
+import st.malike.model.mongodb.DemographicSummary;
 
 /**
  *
@@ -26,7 +27,7 @@ public class SummaryCalculatorServiceTest {
 
     @Autowired
     @Qualifier(value = "summaryCalculatorService")
-    SummaryCalculatorService summaryCalculatorService;
+    AggregatorService summaryCalculatorService;
 
     @Test
     public void getSummary() throws ParseException {
