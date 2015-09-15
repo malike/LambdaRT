@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/malike/LambdaRT.svg?branch=master)](https://travis-ci.org/malike/LambdaRT)
 LambdaRT
 ========
 
