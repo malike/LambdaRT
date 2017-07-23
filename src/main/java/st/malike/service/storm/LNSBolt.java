@@ -63,14 +63,13 @@ public class LNSBolt extends BaseBasicBolt {
             String summaryTypeName = (String) config.get("summaryTypeName");
             Object evLogData = null;
             Object lnsargs = null;
-            String lnsMessage = null;
             Map<String, String> lnsArguments = new HashMap<>();
             Demographic realTimeData;
             DemographicSummary batchSummary;
             try {
                 evLogData = input.getValueByField("eventlog");
                 lnsargs = input.getValueByField("lnsargs");
-                lnsMessage = input.getString(3);
+                
             } catch (IllegalArgumentException e) {
             }
 
